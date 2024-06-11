@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="./register.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="loadingMessage" class="hidden loading-message">
+      Generating your Confirmation Page, please wait...
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar" style="display: flex; justify-content: space-between">
+      <div class="logo" style="display: flex; align-items: center">
+        <a href="../index.html" style="text-decoration: none">
+          <img src="../Cal_ai_orign-removebg-preview.png" alt="Company Logo" />
+        </a>
+        <div
+          style="
+            border-left: 4px solid #192081;
+            height: 50px;
+            margin-right: 20px;
+          "
+        ></div>
+        <a href="../index.html" style="text-decoration: none">
+          <span>California Artificial Intelligence Institute</span>
+        </a>
+      </div>
+
+      <div class="email">
+        <a href="mailto:info@californiaai.com"> Email: Info@calai.org </a>
+      </div>
+    </nav>
+
+    <div class="main-content">
+      <div class="container">
+        <h2 class="registration" style="margin-bottom: 15px">
+          Registration Form
+        </h2>
+        <p
+          class="responsive-text"
+          style="text-align: center; font-size: 15px; margin-top: 1px"
+        >
+          Thank you for choosing CalAI!. We want to customise your experience by
+          delivering you the right content. To do that, please complete your
+          registration.
+        </p>
+
+        <form id="registration-form" action="review.html" method="GET">
+          <fieldset>
+            <legend>Certification</legend>
+            <div class="form-group">
+              <label for="certification"
+                >Select Program: <span style="color: red">*</span></label
+              >
+              <select
+                id="certification"
+                name="certification"
+                onchange="updatePrice()"
+                name="program"
+                required
+              >
+                <option value="" disabled selected>Select Program</option>
+                <option value="cert1">
+                  Certified Artificial Intelligence Developer (CAID)
+                </option>
+                <option value="cert2">
+                  Certified Artificial Intelligence Leader (CAIL)
+                </option>
+                <option value="cert3">
+                  Certified Artificial Intelligence Manager (CAIM)
+                </option>
+                <!-- Options for certification -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="country"
+                >Course Price:
+                <span style="color: #cba135" id="priceLabel">$0.00</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Personal Information</legend>
+            <div class="form-group">
+              <label for="email"
+                >Email: <span style="color: red">*</span></label
+              >
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="name">Name: <span style="color: red">*</span></label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="phoneNumber"
+                >Phone Number: <span style="color: red">*</span></label
+              >
+              <div class="phone-number-input">
+                <!-- Input for mobile number -->
+
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="Enter your phone number"
+                  required
+                />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Education</legend>
+            <div class="form-group">
+              <label for="qualification"
+                >Qualification: <span style="color: red">*</span></label
+              >
+              <select id="qualification" name="qualification" required>
+                <option value="">Select Qualification</option>
+                <option value="highschool">High School</option>
+                <option value="bachelor">Bachelor's Degree</option>
+                <option value="master">Master's Degree</option>
+                <option value="phd">Ph.D.</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Employment</legend>
+            <div class="form-group">
+              <label for="employment"
+                >Employment Status: <span style="color: red">*</span></label
+              >
+              <select id="employment" name="employment" required>
+                <option value="">Select Your Employment Status</option>
+                <option value="employed">Employed</option>
+                <option value="self-employed">Self-employed</option>
+                <option value="student">Student</option>
+                <option value="unemployed">Unemployed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="work-experience"
+                >Total Work Experience (years):
+                <span style="color: red">*</span></label
+              >
+              <input
+                type="number"
+                id="work-experience"
+                name="workExperience"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="gegnation"
+                >Designation: <span style="color: red">*</span></label
+              >
+              <input type="text" id="designation" name="designation" required />
+            </div>
+            <div class="form-group">
+              <label for="linkedin">LinkedIn Profile:</label>
+              <input type="text" id="linkedin" name="linkedin" />
+            </div>
+          </fieldset>
+
+          <!-- Submit Button -->
+          <div class="form-group2">
+            <input type="submit" value="Proceed" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script>
+      var input = document.querySelector("#phone");
+      var iti = window.intlTelInput(input, {});
+      var countryCode = iti.getSelectedCountryData().iso2; // Get the selected country code (e.g., "us")
+
+      console.log(countryCode);
+      document
+        .getElementById("registration-form")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault(); // Prevent form submission
+          // loadingMessage.classList.remove("hidden");
+          const certification = document.getElementById("certification").value;
+          const email = document.getElementById("email").value;
+          const name = document.getElementById("name").value;
+          const phone = document.getElementById("phone").value;
+
+          try {
+            timeoutId = setTimeout(() => {
+              loadingMessage.classList.remove("hidden");
+            }, 1000);
+            const courseDetailsResponse = await fetch(
+              "https://cal-ai-eta.vercel.app/getCourseDetails",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ certificationId: certification }),
+              }
+            );
+
+            clearTimeout(timeoutId);
+            loadingMessage.classList.add("hidden");
+
+            if (!courseDetailsResponse.ok) {
+              throw new Error("Failed to get course details");
+            }
+
+            const courseDetailsData = await courseDetailsResponse.json();
+
+            const queryParams = new URLSearchParams({
+              certification: courseDetailsData.certName,
+              name: name,
+              email: email,
+              courseFee: courseDetailsData.courseFee,
+              registrationFee: courseDetailsData.registrationFee,
+              country: countryCode,
+              contact: phone,
+            }).toString();
+
+            window.location.href = `../review/review.html?${queryParams}`;
+          } catch (error) {
+            console.error("Error:", error.message);
+            // Handle error
+          }
+        });
+    </script>
+    <script>
+      function updatePrice() {
+        const certification = document.getElementById("certification").value;
+        let price = 0;
+        switch (certification) {
+          case "cert1":
+            price = 1000.0; // Set the price for Certified Artificial Intelligence Developer
+            break;
+          case "cert2":
+            price = 1200.0; // Set the price for Certified Artificial Intelligence Leader
+            break;
+          case "cert3":
+            price = 499.0; // Set the price for Certified Artificial Intelligence Manager
+            break;
+          default:
+            price = 0.0; // Default price if no option is selected
+        }
+        document.getElementById("priceLabel").textContent = `$${price.toFixed(
+          2
+        )}`;
+      }
+    </script>
+  </body>
+</html>

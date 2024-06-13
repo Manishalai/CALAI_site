@@ -314,6 +314,8 @@
           tncMessage.textContent = "";
           try {
             // console.log(tot);
+            const scholarshipCode =
+              document.getElementById("scholarshipCode").value;
             const url = "https://cal-ai-eta.vercel.app/register"; // Replace with your backend endpoint
 
             const requestBody = {
@@ -324,6 +326,7 @@
               courseFee: courseFee,
               registrationFee: registrationFee,
               certification: certification,
+              couponCode: scholarshipCode,
             };
 
             fetch(url, {

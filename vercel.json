@@ -2,13 +2,6 @@
   "version": 2,
   "routes": [
     {
-      "src": "/register_form/register.html",
-      "status": 301,
-      "headers": {
-        "Location": "https://new-cal-ai.vercel.app/ExpressCheckout"
-      }
-    },
-    {
       "src": "/(.*)",
       "dest": "/$1"
     }
